@@ -1,1 +1,4 @@
-# lemma-sdk-samples
+This repository cotains Lemma video SDK sample applications. Please refer these application while integrating Lemma video SDK into your Andriod applications.
+
+Note: To run this project you have to get `LEMMA_AD_UNIT_URL` in this sample app with valid lemma ad unit URL.
+
