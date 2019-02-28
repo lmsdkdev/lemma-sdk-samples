@@ -1,4 +1,4 @@
-### Lemma sdk sample applications
+### Lemma sdk sample application
 
 This repository contains Lemma video SDK sample applications. Please refer these application while integrating Lemma video SDK 
 into your Andriod applications.
