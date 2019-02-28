@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity implements AdManagerCallback
                 MainActivity.this,
                 <LEMMA_AD_UNIT_URL>);
         mVAdManager.init(mLinerAdContainer);
-        mVAdManager.destroyAd();
 
     }
 
