@@ -16,16 +16,17 @@ import android.widget.FrameLayout;
 
 import lemma.lemmavideosdk.common.AppLog;
 import lemma.lemmavideosdk.common.LemmaSDK;
-import lemma.lemmavideosdk.vast.VastBuilder.Vast;
 import lemma.lemmavideosdk.vast.listeners.AdManagerCallback;
-import lemma.lemmavideosdk.vast.manager.VAdManager;
+import lemma.lemmavideosdk.vast.manager.LMAdRequest;
+import lemma.lemmavideosdk.vast.manager.LMVideoAdManager;
 
 
 public class MainActivity extends AppCompatActivity implements AdManagerCallback {
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     String TAG = "MainActivity";
-    private VAdManager mVAdManager = null;
+    private LMVideoAdManager mVAdManager = null;
+
     private FrameLayout mLinerAdContainer;
 
     @Override
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity implements AdManagerCallback
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loadAd(<LEMMA_AD_UNIT_URL>);
+                checkPermissionAndLoadAd();
             }
         });
 
@@ -54,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements AdManagerCallback
         return true;
     }
 
-    public void loadAd(final String adUnitId) {
+    public void checkPermissionAndLoadAd() {
 
         String listPermissionsNeeded[] = {Manifest.permission.WRITE_EXTERNAL_STORAGE,
                 Manifest.permission.ACCESS_COARSE_LOCATION};
@@ -69,28 +70,26 @@ public class MainActivity extends AppCompatActivity implements AdManagerCallback
 
     private void loadAd() {
 
-        LemmaSDK.init(MainActivity.this);
-        mVAdManager = new VAdManager(MainActivity.this,
-                MainActivity.this,
-                <LEMMA_AD_UNIT_URL>);
+        LemmaSDK.init(this);
+        LMAdRequest adRequest = new LMAdRequest(<publisher_id_string>, <ad_unit_id_string>);
+        mVAdManager = new LMVideoAdManager(this, this, adRequest);
         mVAdManager.init(mLinerAdContainer);
-
-    }
-
-    @Override
-    public void onAdError(VAdManager adManager, int errorType) {
-        // TODO Auto-generated method stub
-        AppLog.e(TAG, "Failed to start ad playing");
-    }
-
-    @Override
-    public void adReceived(VAdManager vAdManager, Vast vast, boolean b) {
 
     }
 
     @Override
     public boolean shouldFireImpressions() {
         return true;
+    }
+
+    @Override
+    public void onAdError(LMVideoAdManager lmVideoAdManager, Error error) {
+        AppLog.e(TAG, "Failed with error "+error.getLocalizedMessage());
+    }
+
+    @Override
+    public void onAdLoopComplete(LMVideoAdManager lmVideoAdManager) {
+        AppLog.e(TAG, "Ad loop completed");
     }
 
     @Override
