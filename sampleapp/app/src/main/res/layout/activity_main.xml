@@ -18,23 +18,68 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/design_default_color_primary"
             app:popupTheme="@style/AppTheme.PopupOverlay"
+            app:title="Lemma SDK App"
             app:titleTextColor="@color/colorPrimary" />
 
     </android.support.design.widget.AppBarLayout>
 
-    <FrameLayout
-        android:id="@+id/ad_container"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:background="@color/colorPrimary"
-        android:visibility="visible"></FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@drawable/play" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+
+                <FrameLayout
+                    android:id="@+id/ad_container"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_gravity="start"
+                    android:background="@android:color/darker_gray"
+                    android:visibility="visible"></FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+
+            <Button
+                android:id="@+id/play"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="START AD" />
+
+            <Button
+                android:id="@+id/pause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="PAUSE" />
+
+            <Button
+                android:id="@+id/resume"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="RESUME" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+
 
 </android.support.design.widget.CoordinatorLayout>
