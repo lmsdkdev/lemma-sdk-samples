@@ -8,4 +8,4 @@ into your Android applications.
 > - `ad_unit_id_string`: This will be used to identify the device where the partner is running this application
 > To get this information please contact lemma sales/support team at support@lemmatechnologies.com
 
-Refer [LemmaSDK Developer Guide](https://github.com/lmsdkdev/lemma-sdk-samples/wiki/Lemma-Android-SDK--Developer-Guide) for detailed integration steps.
+Refer [LemmaSDK Developer Guide](https://github.com/lmsdkdev/lemma-sdk-samples/wiki) for detailed integration steps.
