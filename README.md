@@ -1,6 +1,6 @@
 ### LemmaSDK sample application
 
-This repository contains Lemma video SDK sample application. Please refer to this application as a reference while integrating LemmaSDK 
+This repository contains LemmaSDK sample application. Please refer to this application as a reference while integrating LemmaSDK 
 into your Android applications.
 
 > To run this application and play any ads, you will need the following information:
