@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadAd() {
         LemmaSDK.init(this);
-        LMAdRequest adRequest = new LMAdRequest(<publisher_id_string>, <ad_unit_id_string>);
+        LMAdRequest adRequest = new LMAdRequest("1", "1547");
 
         mVAdManager = new LMVideoAdManager(this, adRequest, new AdManagerCallback() {
             @Override
