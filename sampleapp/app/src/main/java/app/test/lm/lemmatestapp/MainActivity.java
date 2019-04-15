@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mVAdManager.pause();
+                mVAdManager.pauseLoop();
             }
         });
 
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mVAdManager.resume();
+                mVAdManager.resumeLoop();
             }
         });
     }
