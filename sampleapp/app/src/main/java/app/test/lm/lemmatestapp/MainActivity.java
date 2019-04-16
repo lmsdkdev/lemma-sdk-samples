@@ -1,43 +1,44 @@
 package app.test.lm.lemmatestapp;
 
 import android.Manifest;
+import android.app.Activity;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import lemma.lemmavideosdk.common.AppLog;
-import lemma.lemmavideosdk.common.LemmaSDK;
 import lemma.lemmavideosdk.vast.listeners.AdManagerCallback;
 import lemma.lemmavideosdk.vast.manager.LMAdRequest;
 import lemma.lemmavideosdk.vast.manager.LMVideoAdManager;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends Activity {
 
     public static final int REQUEST_ID_MULTIPLE_PERMISSIONS = 101;
     String TAG = "MainActivity";
     private LMVideoAdManager mVAdManager = null;
     private FrameLayout mLinerAdContainer;
+    private TextView textView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
         setContentView(R.layout.activity_main);
-        mLinerAdContainer = (FrameLayout) findViewById(R.id.ad_container);
+        mLinerAdContainer = (FrameLayout) findViewById(R.id.ad_linear_container);
+        textView = (TextView) findViewById(R.id.tv);
+        textView.setMovementMethod(new ScrollingMovementMethod());
 
-        Button play = (Button) findViewById(R.id.play);
-        play.setOnClickListener(new View.OnClickListener() {
+        Button playBtn = (Button) findViewById(R.id.start);
+        playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (mVAdManager == null) {
@@ -46,30 +47,42 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button stopBtn = (Button) findViewById(R.id.stop);
+        stopBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mVAdManager != null) {
+                    mVAdManager.destroy();
+                    mVAdManager = null;
+                } else {
+                    Toast.makeText(MainActivity.this, "Ad loading is not started yet, Please press START AD", Toast.LENGTH_LONG).show();
+                }
+            }
+        });
 
         Button pause = (Button) findViewById(R.id.pause);
         pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mVAdManager.pauseLoop();
+                if (mVAdManager != null) {
+                    mVAdManager.pauseLoop();
+                } else {
+                    Toast.makeText(MainActivity.this, "Ad loading is not started yet, Please press START AD", Toast.LENGTH_LONG).show();
+                }
             }
         });
-
 
         Button resume = (Button) findViewById(R.id.resume);
         resume.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mVAdManager.resumeLoop();
+                if (mVAdManager != null) {
+                    mVAdManager.resumeLoop();
+                } else {
+                    Toast.makeText(MainActivity.this, "Ad loading is not started yet, Please press START AD", Toast.LENGTH_LONG).show();
+                }
             }
         });
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
     }
 
     public void checkPermissionAndLoadAd() {
@@ -86,20 +99,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void loadAd() {
-        LemmaSDK.init(this);
-        LMAdRequest adRequest = new LMAdRequest("1", "1547");
-
+        LMAdRequest adRequest = new LMAdRequest("76", "1526");
         mVAdManager = new LMVideoAdManager(this, adRequest, new AdManagerCallback() {
             @Override
             public void onAdError(LMVideoAdManager adManager, Error error) {
-
+                Toast.makeText(MainActivity.this, "Error " + error.getLocalizedMessage(), Toast.LENGTH_LONG).show();
             }
 
             @Override
             public void onAdEvent(AD_EVENT event) {
 
-                AppLog.i(TAG, event.name());
                 AppLog.i(TAG, "" + mVAdManager.getCurrentAdLoopStat());
+                log(event.name());
+                log("" + mVAdManager.getCurrentAdLoopStat());
 
                 switch (event) {
                     case AD_LOADED:
@@ -111,6 +123,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
         mVAdManager.init(mLinerAdContainer);
+    }
+
+    private void log(String log) {
+        textView.append(log + "\n");
     }
 
     @Override
