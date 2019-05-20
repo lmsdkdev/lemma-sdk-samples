@@ -100,6 +100,7 @@ public class MainActivity extends Activity {
 
     private void loadAd() {
         LMAdRequest adRequest = new LMAdRequest("76", "1526");
+        adRequest.setAdServerBaseURL("http://ads.lemmatechnologies.com/lemma/servad");
         mVAdManager = new LMVideoAdManager(this, adRequest, new AdManagerCallback() {
             @Override
             public void onAdError(LMVideoAdManager adManager, Error error) {
