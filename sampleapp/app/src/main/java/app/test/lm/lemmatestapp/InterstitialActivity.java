@@ -1,0 +1,91 @@
+package app.test.lm.lemmatestapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
+
+import lemma.lemmavideosdk.interstitial.LMInterstitial;
+
+public class InterstitialActivity extends Activity {
+    private static final String TAG = "InterstitialActivity";
+
+    private LMInterstitial interstitial;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.interstitial_activity);
+
+        findViewById(R.id.load_ad).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                findViewById(R.id.show_ad).setEnabled(false);
+                loadAd();
+
+            }
+        });
+
+        findViewById(R.id.show_ad).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (null != interstitial) {
+                    interstitial.show();
+                } else {
+                    Toast.makeText(InterstitialActivity.this, "Please load Ad before showing it", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+    }
+
+    private void initAd() {
+        if (null != interstitial) {
+            interstitial.destroy();
+            interstitial = null;
+        }
+
+        interstitial = new LMInterstitial(this, "1", "1234","http://demo1859652.mockable.io/ads");
+        interstitial.setListener(new InterstitialListener());
+    }
+
+    private void loadAd() {
+        initAd();
+        interstitial.loadAd();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != interstitial) {
+            interstitial.destroy();
+        }
+
+    }
+
+    class InterstitialListener implements LMInterstitial.LMInterstitialListener {
+
+        @Override
+        public void onAdReceived(LMInterstitial ad) {
+            findViewById(R.id.show_ad).setEnabled(true);
+        }
+
+        @Override
+        public void onAdFailed(LMInterstitial ad, Error error) {
+            Log.e(TAG, "Ad failed with error - " + error.toString());
+        }
+
+        @Override
+        public void onAdOpened(LMInterstitial ad) {
+            Log.d(TAG, "Ad Opened");
+        }
+
+        @Override
+        public void onAdClosed(LMInterstitial ad) {
+            Log.d(TAG, "Ad Closed");
+            interstitial = null;
+        }
+
+    }
+}
