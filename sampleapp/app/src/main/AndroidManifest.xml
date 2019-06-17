@@ -39,6 +39,12 @@
             android:screenOrientation="portrait">
         </activity>
         <activity
+            android:name="app.test.lm.lemmatestapp.VideoInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+        </activity>
+        <activity
             android:name="app.test.lm.lemmatestapp.VideoDebugActivity"
             android:configChanges="keyboardHidden|orientation"
             android:label="@string/app_name"

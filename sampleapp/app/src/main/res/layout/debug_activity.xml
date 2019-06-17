@@ -22,7 +22,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@color/cardview_dark_background"
                 android:text="START AD"
                 android:textColor="@color/white_alpha" />
 
@@ -32,7 +32,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@color/cardview_dark_background"
                 android:text="PAUSE"
                 android:textColor="@color/white_alpha" />
 
@@ -42,7 +42,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@color/cardview_dark_background"
                 android:text="RESUME"
                 android:textColor="@color/white_alpha" />
 
@@ -52,7 +52,7 @@
                 android:layout_height="match_parent"
                 android:layout_margin="4dp"
                 android:layout_weight="1"
-                android:background="@color/colorPrimary"
+                android:background="@color/cardview_dark_background"
                 android:text="STOP"
                 android:textColor="@color/white_alpha" />
         </LinearLayout>
