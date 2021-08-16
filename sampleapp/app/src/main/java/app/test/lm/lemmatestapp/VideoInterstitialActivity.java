@@ -48,7 +48,7 @@ public class VideoInterstitialActivity extends Activity {
             interstitial = null;
         }
 
-        interstitial = new LMVideoInterstitial(this, "1", "1234", "http://demo1859652.mockable.io/videoad");
+        interstitial = new LMVideoInterstitial(this, "169", "14687", "http://ads.lemmatechnologies.com/lemma/servad");
         interstitial.setListener(new VideoInterstitialListener());
     }
 

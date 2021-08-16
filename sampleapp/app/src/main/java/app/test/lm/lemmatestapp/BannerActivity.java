@@ -22,7 +22,7 @@ public class BannerActivity extends Activity {
 
         setContentView(R.layout.banner_activity);
 
-        bannerView = new LMBannerView(this, "1", "812", new LMBannerView.LMAdSize(320,50),"http://demo1859652.mockable.io/ads");
+        bannerView = new LMBannerView(this, "169", "14688", new LMBannerView.LMAdSize(320,50),"http://ads.lemmatechnologies.com/lemma/servad");
 
         FrameLayout mLinerAdContainer = findViewById(R.id.ad_linear_container);
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

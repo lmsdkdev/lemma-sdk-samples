@@ -46,7 +46,7 @@ public class InterstitialActivity extends Activity {
             interstitial = null;
         }
 
-        interstitial = new LMInterstitial(this, "1", "1234","http://demo1859652.mockable.io/ads");
+        interstitial = new LMInterstitial(this, "169", "14688","http://ads.lemmatechnologies.com/lemma/servad");
         interstitial.setListener(new InterstitialListener());
     }
 

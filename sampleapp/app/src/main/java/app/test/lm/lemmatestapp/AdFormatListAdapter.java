@@ -67,7 +67,7 @@ public class AdFormatListAdapter extends RecyclerView.Adapter<AdFormatListAdapte
         LIST_ITEM_HEADER(null, "Ad Formats"),
         LIST_ITEM_BANNER(BannerActivity.class, "Banner"),
         LIST_ITEM_INTERSTITIAL(InterstitialActivity.class, "Interstitial"),
-        LIST_ITEM__VIDEO(VideoDebugActivity.class, "Video"),
+     //   LIST_ITEM__VIDEO(VideoDebugActivity.class, "Video"),
         LIST_ITEM__VIDEO_INSTL(VideoInterstitialActivity.class, "Video Interstitial");
 
 
