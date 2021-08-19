@@ -54,6 +54,7 @@ public class VideoInterstitialActivity extends Activity {
 
     private void loadAd() {
         initAd();
+        interstitial.ShowAdCloseButton=true;
         interstitial.loadAd();
     }
 
