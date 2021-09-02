@@ -38,6 +38,16 @@ public class InBannerVideoActivity extends Activity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (null != inBannerVideo) {
+            inBannerVideo.destroy();
+            inBannerVideo = null;
+        }
+
+    }
+
     class InBannerVideoListener implements LMInBannerVideo.InBannerVideoListener{
 
         @Override
@@ -60,6 +70,7 @@ public class InBannerVideoActivity extends Activity {
         @Override
         public void onAdClosed(LMInBannerVideo ad) {
             Log.d(TAG, "Ad Closed");
+            inBannerVideo.destroy();
             inBannerVideo = null;
 
         }

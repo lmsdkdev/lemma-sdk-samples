@@ -63,6 +63,7 @@ public class VideoInterstitialActivity extends Activity {
         super.onDestroy();
         if (null != interstitial) {
             interstitial.destroy();
+            interstitial = null;
         }
 
     }
@@ -87,6 +88,7 @@ public class VideoInterstitialActivity extends Activity {
         @Override
         public void onAdClosed(LMVideoInterstitial ad) {
             Log.d(TAG, "Ad Closed");
+            interstitial.destroy();
             interstitial = null;
         }
 
