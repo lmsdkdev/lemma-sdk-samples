@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Toast;
 
 
+import lemma.lemmavideosdk.common.AppLog;
 import lemma.lemmavideosdk.videointerstitial.LMVideoInterstitial;
 
 public class VideoInterstitialActivity extends Activity {
@@ -64,6 +65,7 @@ public class VideoInterstitialActivity extends Activity {
         if (null != interstitial) {
             interstitial.destroy();
             interstitial = null;
+            AppLog.d(TAG,"VideoInterstitialActivity Destroy");
         }
 
     }
@@ -72,24 +74,30 @@ public class VideoInterstitialActivity extends Activity {
 
         @Override
         public void onAdReceived(LMVideoInterstitial ad) {
+            AppLog.d(TAG,"Ad Received Successfully");
             findViewById(R.id.show_ad).setEnabled(true);
         }
 
         @Override
         public void onAdFailed(LMVideoInterstitial ad, Error error) {
-            Log.e(TAG, "Ad failed with error - " + error.toString());
+            AppLog.e(TAG, "Ad failed with error - " + error.toString());
         }
 
         @Override
         public void onAdOpened(LMVideoInterstitial ad) {
-            Log.d(TAG, "Ad Opened");
+            AppLog.d(TAG, "Ad Opened");
         }
 
         @Override
         public void onAdClosed(LMVideoInterstitial ad) {
-            Log.d(TAG, "Ad Closed");
+            AppLog.d(TAG, "Ad Closed");
             interstitial.destroy();
             interstitial = null;
+        }
+
+        @Override
+        public void onAdCompletion(LMVideoInterstitial lmVideoInterstitial) {
+            AppLog.d(TAG,"Ad Completed");
         }
 
     }

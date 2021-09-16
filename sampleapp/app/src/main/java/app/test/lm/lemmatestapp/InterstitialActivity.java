@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import lemma.lemmavideosdk.common.AppLog;
 import lemma.lemmavideosdk.interstitial.LMInterstitial;
 
 public class InterstitialActivity extends Activity {
@@ -69,22 +70,23 @@ public class InterstitialActivity extends Activity {
 
         @Override
         public void onAdReceived(LMInterstitial ad) {
+            AppLog.d(TAG,"Ad Received Successfully");
             findViewById(R.id.show_ad).setEnabled(true);
         }
 
         @Override
         public void onAdFailed(LMInterstitial ad, Error error) {
-            Log.e(TAG, "Ad failed with error - " + error.toString());
+            AppLog.e(TAG, "Ad failed with error - " + error.toString());
         }
 
         @Override
         public void onAdOpened(LMInterstitial ad) {
-            Log.d(TAG, "Ad Opened");
+            AppLog.d(TAG, "Ad Opened");
         }
 
         @Override
         public void onAdClosed(LMInterstitial ad) {
-            Log.d(TAG, "Ad Closed");
+            AppLog.d(TAG, "Ad Closed");
             interstitial = null;
         }
 

@@ -24,6 +24,16 @@
                 android:background="#000000"
                 android:text="LOAD AD"
                 android:textColor="@color/white_alpha" />
+            <Button
+                android:id="@+id/showAd"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:background="#000000"
+                android:text="Show AD"
+                android:textColor="@color/white_alpha" />
+
 
         </LinearLayout>
 

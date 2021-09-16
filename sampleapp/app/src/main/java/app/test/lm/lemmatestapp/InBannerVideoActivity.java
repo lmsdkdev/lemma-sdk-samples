@@ -10,6 +10,7 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import lemma.lemmavideosdk.bannervideo.LMInBannerVideo;
+import lemma.lemmavideosdk.common.AppLog;
 
 public class InBannerVideoActivity extends Activity {
 
@@ -21,6 +22,13 @@ public class InBannerVideoActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_in_banner_video);
 
+        final Button playBtn, showAdBtn;
+
+        playBtn = findViewById(R.id.start);
+        showAdBtn = findViewById(R.id.showAd);
+
+        showAdBtn.setVisibility(View.INVISIBLE);
+
         inBannerVideo = new LMInBannerVideo(this,"169","14687",new LMInBannerVideo.LMAdSize(300,250),"http://ads.lemmatechnologies.com/lemma/servad");
         inBannerVideo.setListener(new InBannerVideoListener());
 
@@ -29,11 +37,22 @@ public class InBannerVideoActivity extends Activity {
                 LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
 
         mLinerAdContainer.addView(inBannerVideo, params);
-        Button playBtn = findViewById(R.id.start);
+
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.showAd).setVisibility(View.INVISIBLE);
                 inBannerVideo.loadAd();
+            }
+        });
+
+        showAdBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(inBannerVideo != null){
+                    inBannerVideo.play();
+                    showAdBtn.setVisibility(View.INVISIBLE);
+                }
             }
         });
     }
@@ -44,6 +63,7 @@ public class InBannerVideoActivity extends Activity {
         if (null != inBannerVideo) {
             inBannerVideo.destroy();
             inBannerVideo = null;
+            AppLog.d(TAG,"InBannerVideoActivity Destroy");
         }
 
     }
@@ -52,27 +72,33 @@ public class InBannerVideoActivity extends Activity {
 
         @Override
         public void onAdReceived(LMInBannerVideo ad) {
-            Log.e(TAG, "Ad Received Successfully :- ");
+            AppLog.d(TAG, "Ad Received Successfully  ");
+            findViewById(R.id.showAd).setVisibility(View.VISIBLE);
         }
 
         @Override
         public void onAdFailed(LMInBannerVideo ad, Error error) {
-            Log.e(TAG, "Ad failed with error - " + error.toString());
+            AppLog.e(TAG, "Ad failed with error - " + error.toString());
 
         }
 
         @Override
         public void onAdOpened(LMInBannerVideo ad) {
-            Log.d(TAG, "Ad Opened");
+            AppLog.d(TAG, "Ad Opened");
 
         }
 
         @Override
         public void onAdClosed(LMInBannerVideo ad) {
-            Log.d(TAG, "Ad Closed");
+            AppLog.d(TAG, "Ad Closed");
             inBannerVideo.destroy();
             inBannerVideo = null;
 
+        }
+
+        @Override
+        public void onAdCompletion(LMInBannerVideo lmInBannerVideo) {
+            AppLog.d(TAG,"Ad Completed");
         }
     }
 }

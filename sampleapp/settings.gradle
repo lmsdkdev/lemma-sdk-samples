@@ -1,2 +1,2 @@
-include ':lemmamobilesdk'
+include ':lemmaMobileSdk'
 include ':app'

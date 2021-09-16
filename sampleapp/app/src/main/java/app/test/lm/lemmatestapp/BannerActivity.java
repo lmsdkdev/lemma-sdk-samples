@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 
 
 import lemma.lemmavideosdk.banner.LMBannerView;
+import lemma.lemmavideosdk.common.AppLog;
 
 public class BannerActivity extends Activity {
 
@@ -34,12 +35,12 @@ public class BannerActivity extends Activity {
         bannerView.setBannerViewListener(new LMBannerView.BannerViewListener() {
             @Override
             public void onAdReceived() {
-
+                AppLog.d(TAG,"Ad Received Successfully");
             }
 
             @Override
             public void onAdError(Error error) {
-                Log.e(TAG, "Ad failed with error - " + error.toString());
+                AppLog.e(TAG, "Ad failed with error - " + error.toString());
             }
         });
 
