@@ -1,2 +1,2 @@
-include ':lemmamobilesdk'
+include ':Lemma_Ads_SDK'
 include ':app'
