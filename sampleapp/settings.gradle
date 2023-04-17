@@ -1,2 +1,2 @@
-include ':Lemma_Ads_SDK'
+include ':lemmaadssdk'
 include ':app'

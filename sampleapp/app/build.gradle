@@ -43,6 +43,6 @@ dependencies {
     implementation 'com.liulishuo.filedownloader:library:1.7.5'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.google.code.gson:gson:2.8.5'
-    implementation project(':Lemma_Ads_SDK')
+    implementation project(':lemmaadssdk')
 
 }
