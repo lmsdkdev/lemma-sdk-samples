@@ -1,6 +1,6 @@
 ### LemmaSDK sample application
 
-This repository contains Lemma Mobile SDK sample application. Please refer to this application as a reference while integrating LemmaSDK 
+This repository contains Lemma Ads SDK sample application. Please refer to this application as a reference while integrating Lemma Ads SDK 
 into your Android applications.
 
 > To run this application and play any ads, you will need the following information:
