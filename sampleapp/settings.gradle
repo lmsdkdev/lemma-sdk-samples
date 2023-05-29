@@ -1,2 +1,2 @@
-include ':lemmaadsdk'
+include ':lemmaadssdk'
 include ':app'
